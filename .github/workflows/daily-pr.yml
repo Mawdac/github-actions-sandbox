@@ -1,10 +1,10 @@
-# This is a cronjob
+# This is a cronjob for PR reminders
 name: Daily PR Reminder
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '0 11 * * 1-5'
 
 jobs:
   notify:
@@ -16,6 +16,8 @@ jobs:
         id: list
         with:
           token: ${{secrets.GITHUB_TOKEN}}
+          labels: '[]'
+          skip_hour: '0'  
       - name: output
         run: echo '${{ steps.list.outputs.pulls }}'
           
