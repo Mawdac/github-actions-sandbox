@@ -1,0 +1,20 @@
+# This is a cronjob
+name: Daily PR Reminder
+
+on:
+  schedule:
+    - cron: '0 11 * * *'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: List Pull Requests
+        uses: buildsville/list-pull-requests@v1
+        id: list
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+      - name: output
+        run: echo '${{ steps.list.outputs.pulls }}'
+          
