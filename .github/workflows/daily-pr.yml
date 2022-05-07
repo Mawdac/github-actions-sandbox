@@ -2,6 +2,7 @@
 name: Daily PR Reminder
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 11 * * *'
 
