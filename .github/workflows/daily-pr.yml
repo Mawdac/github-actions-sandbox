@@ -25,5 +25,4 @@ jobs:
         with:
           python-version: '3.x'
       - name: Parse PRs
-        run: |
-          python parse-pr.py '${{ steps.list.outputs.pulls }}'
+        run: python parse-pr.py '${{ steps.list.outputs.pulls }}'
