@@ -18,6 +18,12 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           labels: '[]'
           skip_hour: '0'  
-      - name: output
+      - name: Output
         run: echo '${{ steps.list.outputs.pulls }}'
-          
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Parse PRs
+        run: |
+          gh pr list
