@@ -18,7 +18,7 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           labels: '[]'
           skip_hour: '0'  
-      - name: Output
+      - name: Print Output
         run: echo '${{ steps.list.outputs.pulls }}'
       - name: Set up Python
         uses: actions/setup-python@v3
@@ -26,4 +26,4 @@ jobs:
           python-version: '3.x'
       - name: Parse PRs
         run: |
-          gh pr list
+          python parse-pr.py '${{ steps.list.outputs.pulls }}'
