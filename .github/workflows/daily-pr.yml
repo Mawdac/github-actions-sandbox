@@ -25,4 +25,5 @@ jobs:
         with:
           python-version: '3.x'
       - name: Parse PRs
-        run: python ${{ github.action_path }}.github/workflows/parse-pr.py '${{ steps.list.outputs.pulls }}'
+        working-directory: ./.github/workflows
+        run: python parse-pr.py '${{ steps.list.outputs.pulls }}'
