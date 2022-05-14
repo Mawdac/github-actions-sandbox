@@ -26,4 +26,4 @@ jobs:
           python-version: '3.x'
       - name: Parse PRs
         run: |
-          python parse-pr.py '${{ steps.list.outputs.pulls }}'
+          python ./.github/workflows/parse-pr.py '${{ steps.list.outputs.pulls }}'
