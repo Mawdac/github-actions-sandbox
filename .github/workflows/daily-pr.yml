@@ -30,9 +30,7 @@ jobs:
     - name: Parse output
       run: |
         output=$(python ${{ env.DEVOPS_DIR }}/.github/parse-pr.py '${{ steps.list.outputs.pulls }})
-        output="${output//'%'/'%25'}"
-        output="${output//$'\n'/'%0A'}"
-        echo "::set-output name=pullreqs::$output"
+        echo "::set-output name=pull-reqs::$output"
       id: parse
     - name: Print PRs
       run: echo "${{ steps.parse.outputs.pull-reqs }}"
