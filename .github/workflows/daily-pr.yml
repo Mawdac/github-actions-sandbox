@@ -27,5 +27,5 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: ${{ env.DEVOPS_DIR }}
       - name: Hello World
-        run: python ${{ env.DEVOPS_DIR }}/parse-pr.py
+        run: python ${{ env.DEVOPS_DIR }}/parse-pr.py '${{ steps.list.outputs.pulls }}'
         shell: sh
