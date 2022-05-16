@@ -1,5 +1,8 @@
 import sys
 
+for i in sys.argv:
+  print("arguments:" + i)
+
 prstring = sys.argv.pop(1)
 
 mylist = prstring.split("\\n")
