@@ -30,8 +30,9 @@ jobs:
     - name: Parse output
       run: |
         output=$(python ${{ env.DEVOPS_DIR }}/.github/parse-pr.py '${{ steps.list.outputs.pulls }}')
-        echo "::set-output name=pull-reqs::$output"
+        echo "::set-output name=markdown::$output"
+        echo $output
       id: parse
     - name: Print PRs
-      run: echo '${{ steps.parse.outputs.pull-reqs }}'
+      run: echo '${{ steps.parse.outputs.markdown }}'
       shell: sh
