@@ -31,7 +31,6 @@ jobs:
       run: |
         output=$(python ${{ env.DEVOPS_DIR }}/.github/parse-pr.py '${{ steps.list.outputs.pulls }}')
         echo "::set-output name=markdown::$output"
-        echo $output
       id: parse
     - name: Print PRs
       run: echo '${{ steps.parse.outputs.markdown }}'
