@@ -21,11 +21,11 @@ jobs:
     - name: Print Output
       run: echo '${{ steps.list.outputs.pulls }}'
     - name: Check-out devops repository
-    uses: actions/checkout@v2
-    with:
-      repository: Mawdac/github-actions-sandbox
-      token: ${{ secrets.GITHUB_TOKEN }}
-      path: ${{ env.DEVOPS_DIR }}
+      uses: actions/checkout@v2
+      with:
+        repository: Mawdac/github-actions-sandbox
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: ${{ env.DEVOPS_DIR }}
     - name: Hello World
       run: python ${{ env.DEVOPS_DIR }}/parse-pr.py '${{ steps.list.outputs.pulls }}'
       shell: sh
