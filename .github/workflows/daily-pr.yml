@@ -20,10 +20,12 @@ jobs:
           skip_hour: '0'  
       - name: Print Output
         run: echo '${{ steps.list.outputs.pulls }}'
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      - name: Parse PRs
-        working-directory: ./.github/workflows
-        run: python parse-pr.py '${{ steps.list.outputs.pulls }}'
+      - name: Check-out devops repository
+      uses: actions/checkout@v2
+      with:
+        repository: Mawdac/github-actions-sandbox
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: ${{ env.DEVOPS_DIR }}
+      - name: Hello World
+        run: python ${{ env.DEVOPS_DIR }}/parse-pr.py
+        shell: sh
