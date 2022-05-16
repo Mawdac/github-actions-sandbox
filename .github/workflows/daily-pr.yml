@@ -20,15 +20,21 @@ jobs:
       with:
         token: ${{secrets.GITHUB_TOKEN}}
         labels: '[]'
-        skip_hour: '0'  
-    - name: Print Output
-      run: echo '${{ steps.list.outputs.pulls }}'
-    - name: Check-out devops repository
+        skip_hour: '0'
+    - name: Check-out repository
       uses: actions/checkout@v2
       with:
         repository: Mawdac/github-actions-sandbox
         token: ${{ secrets.GITHUB_TOKEN }}
         path: ${{ env.DEVOPS_DIR }}
-    - name: Hello World
-      run: python ${{ env.DEVOPS_DIR }}/parse-pr.py '${{ steps.list.outputs.pulls }}'
+    - name: Parse output
+      run: |
+        output=$(python ${{ env.DEVOPS_DIR }}/.github/parse-pr.py '${{ steps.list.outputs.pulls }})
+        output="${output//'%'/'%25'}"
+        output="${output//$'\n'/'%0A'}"
+        output="${output//$'\r'/'%0D'}" 
+        echo "::set-output name=pull-reqs::$output"
+      id: parse
+    - name: Print PRs
+      run: echo "${{ steps.parse.outputs.pull-reqs }}"
       shell: sh
