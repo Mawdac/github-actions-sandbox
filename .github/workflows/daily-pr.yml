@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '0 11 * * 1-5'
 
+env:
+  DEVOPS_DIR: devops
+
 jobs:
   notify:
     runs-on: ubuntu-latest
