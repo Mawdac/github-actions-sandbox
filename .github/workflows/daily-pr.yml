@@ -11,21 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: List Pull Requests
-        uses: buildsville/list-pull-requests@v1
-        id: list
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          labels: '[]'
-          skip_hour: '0'  
-      - name: Print Output
-        run: echo '${{ steps.list.outputs.pulls }}'
-      - name: Check-out devops repository
-      uses: actions/checkout@v2
+    - name: List Pull Requests
+      uses: buildsville/list-pull-requests@v1
+      id: list
       with:
-        repository: Mawdac/github-actions-sandbox
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: ${{ env.DEVOPS_DIR }}
-      - name: Hello World
-        run: python ${{ env.DEVOPS_DIR }}/parse-pr.py '${{ steps.list.outputs.pulls }}'
-        shell: sh
+        token: ${{secrets.GITHUB_TOKEN}}
+        labels: '[]'
+        skip_hour: '0'  
+    - name: Print Output
+      run: echo '${{ steps.list.outputs.pulls }}'
+    - name: Check-out devops repository
+    uses: actions/checkout@v2
+    with:
+      repository: Mawdac/github-actions-sandbox
+      token: ${{ secrets.GITHUB_TOKEN }}
+      path: ${{ env.DEVOPS_DIR }}
+    - name: Hello World
+      run: python ${{ env.DEVOPS_DIR }}/parse-pr.py '${{ steps.list.outputs.pulls }}'
+      shell: sh
