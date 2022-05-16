@@ -6,9 +6,6 @@ on:
   schedule:
     - cron: '0 11 * * 1-5'
 
-env:
-  DEVOPS_DIR: devops
-
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -21,15 +18,11 @@ jobs:
         token: ${{secrets.GITHUB_TOKEN}}
         labels: '[]'
         skip_hour: '0'
-    - name: Check-out repository
+    - name: Check-out repository # defaults to the current
       uses: actions/checkout@v2
-      with:
-        repository: Mawdac/github-actions-sandbox
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: ${{ env.DEVOPS_DIR }}
     - name: Parse output
       run: |
-        output=$(python ${{ env.DEVOPS_DIR }}/.github/parse-pr.py '${{ steps.list.outputs.pulls }}')
+        output=$(python .github/parse-pr.py '${{ steps.list.outputs.pulls }}')
         echo "::set-output name=markdown::$output"
       id: parse
     - name: Print PRs
