@@ -1,0 +1,22 @@
+name: Tagging Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Tag stable
+        if: github.event.pull_request.merged == true
+        run: |
+          git tag -f -a "stable-${GITHUB_BASE_REF}" -m "Added Stable tag"
+          git push origin $GITHUB_BASE_REF --tags --force
