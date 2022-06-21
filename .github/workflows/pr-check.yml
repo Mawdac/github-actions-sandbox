@@ -12,7 +12,7 @@ jobs:
     - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
       with:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
-        valid-labels: 'bug, enhancement'
-        invalid-labels: 'help wanted, invalid'
+        valid-labels: 'patch, minor, major'
+        invalid-labels: 'do not merge, wip'
         pull-request-number: '${{ github.event.pull_request.number }}'
 
