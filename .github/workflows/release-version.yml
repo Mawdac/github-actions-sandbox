@@ -5,9 +5,9 @@ name: Bump release version
 #     branches:
 #       - "main"
 on:
-  pull-request:
-       branches:
-         - "main"
+  pull_request:
+    branches:
+      - "main"
     types: [closed]
 
 jobs:
