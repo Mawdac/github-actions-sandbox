@@ -24,17 +24,19 @@ jobs:
     - uses: actions/checkout@v2 
     - name: bump version
       run: |
-        echo steps.pr-labels.outputs.labels
         cd nextjs-blog/
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
           npm version major -m "Bump major version"
+          echo "It's a major!"
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
           npm version minor -m "Bump minor version"
+          echo "It's a minor!"
         elif [ -n "$GITHUB_PR_LABEL_PATCH" ]; then
           npm version patch -m "Bump patch version"
+          echo "It's a patch!"
         else
           echo "Invalid label, must be patch, minor or major."
           exit 1
         fi
-        git add .
+        git status
         git push

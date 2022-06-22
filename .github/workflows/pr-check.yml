@@ -14,4 +14,4 @@ jobs:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         valid-labels: 'patch, minor, major'
         invalid-labels: 'do not merge, wip'
-        disable-reviews: true
+        # disable-reviews: true
