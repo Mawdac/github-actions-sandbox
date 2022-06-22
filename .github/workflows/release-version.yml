@@ -5,9 +5,9 @@ name: Bump release version
 #     branches:
 #       - "main"
 on:
-  pull-request:
-       branches:
-         - "main"
+  pull_request:
+    branches:
+      - "main"
     types: [closed]
 
 jobs:
@@ -23,5 +23,6 @@ jobs:
 
     - name: bump version
       run: |
+        cd nextjs-blog/
         npm version steps.pr-labels.outputs.labels -m "Bump version"
         git push

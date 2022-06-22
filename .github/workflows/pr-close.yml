@@ -4,3 +4,11 @@ on:
   pull_request:
     types: [closed]
 
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: notify
+      run: echo "PR close"
