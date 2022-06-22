@@ -1,0 +1,27 @@
+name: Bump release version
+
+# on:
+#   push:
+#     branches:
+#       - "main"
+on:
+  pull-request:
+       branches:
+         - "main"
+    types: [closed]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.merged == true
+    steps:
+
+    - name: Get PR labels
+      id: pr-labels
+      uses: joerick/pr-labels-action@v1.0.6
+
+    - name: bump version
+      run: |
+        npm version steps.pr-labels.outputs.labels -m "Bump version"
+        git push
