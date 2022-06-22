@@ -21,8 +21,22 @@ jobs:
       id: pr-labels
       uses: joerick/pr-labels-action@v1.0.6
 
+    - uses: actions/checkout@v2 
     - name: bump version
       run: |
         cd nextjs-blog/
-        npm version steps.pr-labels.outputs.labels -m "Bump version"
+        case steps.pr-labels.outputs.labels in
+          major)
+            npm version major -m "Bump major version"
+            ;;
+          minor)
+            npm version minor -m "Bump minor version"
+            ;;
+          patch)
+            npm version patch -m "Bump patch version"
+          *)
+            echo "Invalid label"
+            exit 1
+            ;;
+          esac
         git push
