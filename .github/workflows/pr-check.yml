@@ -1,7 +1,7 @@
 name: Pull Request Check
 
 on:
-  pull_request_target:
+  pull_request:
    types: [opened, labeled, unlabeled, synchronize]
 
 jobs:
@@ -14,5 +14,4 @@ jobs:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         valid-labels: 'patch, minor, major'
         invalid-labels: 'do not merge, wip'
-        pull-request-number: '${{ github.event.pull_request.number }}'
-
+        disable-reviews: true
