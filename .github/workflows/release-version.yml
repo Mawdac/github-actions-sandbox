@@ -34,6 +34,7 @@ jobs:
             ;;
           patch)
             npm version patch -m "Bump patch version"
+            ;;
           *)
             echo "Invalid label"
             exit 1
