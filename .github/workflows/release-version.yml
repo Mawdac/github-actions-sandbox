@@ -26,19 +26,14 @@ jobs:
       run: |
         echo steps.pr-labels.outputs.labels
         cd nextjs-blog/
-        case steps.pr-labels.outputs.labels in
-          major)
-            npm version major -m "Bump major version"
-            ;;
-          minor)
-            npm version minor -m "Bump minor version"
-            ;;
-          patch)
-            npm version patch -m "Bump patch version"
-            ;;
-          *)
-            echo "Invalid label"
-            exit 1
-            ;;
-          esac
+        if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
+          npm version major -m "Bump major version"
+        elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
+          npm version minor -m "Bump minor version"
+        elif [ -n "$GITHUB_PR_LABEL_PATCH" ]; then
+          npm version patch -m "Bump patch version"
+        else
+          echo "Invalid label, must be patch, minor or major."
+          exit 1
+        fi
         git push
