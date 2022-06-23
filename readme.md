@@ -1,1 +1,8 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is a box of sand.
+
+<img src="images/sandbox.gif">
+
+You may see robots in here, they will not hurt you!
+
+<img src="images/j5.jpg">
+
