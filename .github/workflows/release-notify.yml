@@ -1,0 +1,14 @@
+name: Notify release build
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: notify
+      run: echo "release notification"
