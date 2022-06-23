@@ -1,5 +1,1 @@
-# Github Actions Sandbox
-
-This is a box of sand.
-
-<img src="images/sandbox.gif">
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).
