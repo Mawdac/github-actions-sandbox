@@ -44,4 +44,4 @@ jobs:
 
   notify:
     needs: bump
-    uses: ./.github/workflows/release-notify.ym
+    uses: ./.github/workflows/release-notify.yml
