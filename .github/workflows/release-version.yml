@@ -33,3 +33,15 @@ jobs:
           exit 1
         fi
         git push --follow-tags
+
+  release:
+    needs: bump
+    uses: ./.github/workflows/release.yml
+
+  preview:
+    needs: bump
+    uses: ./.github/workflows/release-preview.yml
+
+  notify:
+    needs: bump
+    uses: ./.github/workflows/release-notify.ym
