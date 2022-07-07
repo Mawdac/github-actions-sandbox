@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: echo ${{ github.event.pull_request.labels }}
     - uses: actions/labeler@v4
       if: ${{ github.event.pull_request.labels }}
       with:
