@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/labeler@v4
       if: |
-        ${{!contains(github.event.pull_request.labels.*.name, 'wip')
+        ${{!contains(github.event.pull_request.labels.*.name, 'wip') ||
         !contains(github.event.pull_request.labels.*.name, 'do not merge') ||
         !contains(github.event.pull_request.labels.*.name, 'patch') ||
         !contains(github.event.pull_request.labels.*.name, 'minor') ||
