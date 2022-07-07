@@ -11,4 +11,8 @@ metal gear solid is awesome!
 
 <img src="images/mgs.jpg">
 
-this text change marks the release of new versioning!
+
+## Release versioning
+
+This repo automatically creates new versions based on the label of the PR that is merged.
+It follows semantic versioning as described here: https://semver.org/
