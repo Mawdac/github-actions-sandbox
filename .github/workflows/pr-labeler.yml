@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/labeler@v4
-      if: ${{ github.event.pull_request.opened == true || github.event.pull_request.reopened == true }}
+      if: github.event.pull_request.opened == true
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
