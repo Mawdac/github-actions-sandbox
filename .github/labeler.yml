@@ -3,9 +3,3 @@ do not merge:
 
 patch:
 - '**/*'
-
-minor:
-- '**/*'
-
-major:
-- '**/*'
