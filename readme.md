@@ -12,3 +12,5 @@ metal gear solid is awesome!
 <img src="images/mgs.jpg">
 
 this text change marks the release of new versioning!
+
+## Release versioning
