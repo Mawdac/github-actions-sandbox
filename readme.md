@@ -10,5 +10,3 @@ You may see robots in here, they will not hurt you!
 metal gear solid is awesome!
 
 <img src="images/mgs.jpg">
-
-this is some new text
