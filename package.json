@@ -2,10 +2,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "test": "echo 'tests'",
     "build": "next build",
     "start": "next start",
-    "version": "next build",
-    "postversion": "git push --follow-tags"
+    "npm-commit": "git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"",
+    "preversion": "npm test",
+    "version": "npm run build",
+    "postversion": "git reset --soft HEAD~3 && npm run npm-commit && git push --follow-tags"
   },
   "dependencies": {
     "next": "latest",
