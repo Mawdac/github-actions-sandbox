@@ -5,7 +5,7 @@
     "test": "echo 'tests'",
     "build": "next build",
     "start": "next start",
-    "npm-commit": "git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"",
+    "npm-commit": "git commit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"",
     "preversion": "npm test",
     "postversion": "git reset --soft HEAD~2 && npm run npm-commit && git push --follow-tags -f"
   },
