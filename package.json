@@ -7,7 +7,7 @@
     "start": "next start",
     "npm-commit": "git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"",
     "preversion": "npm test",
-    "postversion": "git reset --soft HEAD~3 && npm run npm-commit && git push --follow-tags -f"
+    "postversion": "git reset --soft HEAD~2 && npm run npm-commit && git push --follow-tags -f"
   },
   "dependencies": {
     "next": "latest",
