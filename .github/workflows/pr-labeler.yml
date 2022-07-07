@@ -1,11 +1,11 @@
-name: Pull Request Check
+name: PR Label Checker
 
 on:
   pull_request:
     types: [opened, reopened, labeled, unlabeled, synchronize]
 
 jobs:
-  check:
+  check-labels:
     permissions:
       contents: read
       pull-requests: write
@@ -13,6 +13,7 @@ jobs:
 
     steps:
     - uses: actions/labeler@v4
+      name: check default labels
       if: |
         !contains(github.event.pull_request.labels.*.name, 'wip') &&
         !contains(github.event.pull_request.labels.*.name, 'do not merge') &&
@@ -23,6 +24,7 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
     - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
+      name: validate labels
       with:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         valid-labels: 'patch, minor, major'
