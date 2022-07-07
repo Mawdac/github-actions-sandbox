@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "version": "next build",
+    "postversion": "git push --follow-tags"
   },
   "dependencies": {
     "next": "latest",

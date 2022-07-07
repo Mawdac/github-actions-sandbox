@@ -17,7 +17,7 @@ jobs:
       id: pr-labels
       uses: joerick/pr-labels-action@v1.0.6
 
-    - uses: actions/checkout@v2 
+    - uses: actions/checkout@v2
     - name: bump version
       run: |
         git config user.name github-actions[bot]
@@ -32,7 +32,6 @@ jobs:
           echo "Invalid label, must be patch, minor or major."
           exit 1
         fi
-        git push --follow-tags
 
   release:
     needs: bump
