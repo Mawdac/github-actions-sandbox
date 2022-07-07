@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/labeler@v4
-      if: github.event.pull_request.opened == true
+      if: ${{ !contains(github.event.pull_request.labels.*.name, 'do not merge') }}
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
