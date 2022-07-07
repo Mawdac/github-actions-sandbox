@@ -18,18 +18,17 @@ jobs:
       uses: joerick/pr-labels-action@v1.0.6
 
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
     - name: bump version
       run: |
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        MESSAGE=$(git log --format=%B --reverse HEAD~..HEAD)
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
-          npm version major -m "$(git log --format=%B --reverse HEAD~..HEAD) Major bump to %s [skip ci]"
+          npm version major -m "$MESSAGE Major bump to %s [skip ci]"
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
-          npm version minor -m "$(git log --format=%B --reverse HEAD~..HEAD) Minor bump to %s [skip ci]"
+          npm version minor -m "$MESSAGE Minor bump to %s [skip ci]"
         elif [ -n "$GITHUB_PR_LABEL_PATCH" ]; then
-          npm version patch -m "$(git log --format=%B --reverse HEAD~..HEAD) Patch bump to %s [skip ci]"
+          npm version patch -m "$MESSAGE Patch bump to %s [skip ci]"
         else
           echo "Invalid label, must be patch, minor or major."
           exit 1
