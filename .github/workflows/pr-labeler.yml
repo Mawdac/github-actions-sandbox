@@ -2,7 +2,7 @@ name: Pull Request Check
 
 on:
   pull_request:
-    types: [opened, reopened, labeled, unlabeled, synchronize]
+    types: [opened, labeled, unlabeled, synchronize]
 
 jobs:
   check:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/labeler@v4
-      if: github.event.pull_request.type.opened == true || github.event.pull_request.type.reopened == true
+      if: github.event.pull_request.opened == true
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
