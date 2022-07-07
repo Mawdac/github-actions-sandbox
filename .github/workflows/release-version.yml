@@ -24,17 +24,21 @@ jobs:
       run: |
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        git reset --soft HEAD~1
+        git add .
+        COMMIT_MESSAGE=git log --format=%B --reverse HEAD..HEAD@{1}
+        echo $COMMIT_MESSAGE
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
-          npm version major -m "$(git log --format=%B --reverse HEAD..HEAD@{1})Bump major version [github ci]"
+          npm version major -m "$COMMIT_MESSAGE Bump major version [github ci]"
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
-          npm version minor -m "$(git log --format=%B --reverse HEAD..HEAD@{1})Bump minor version [github ci]"
+          npm version minor -m "$COMMIT_MESSAGE Bump minor version [github ci]"
         elif [ -n "$GITHUB_PR_LABEL_PATCH" ]; then
-          npm version patch -m "$(git log --format=%B --reverse HEAD..HEAD@{1})Bump patch version [github ci]"
+          npm version patch -m "$COMMIT_MESSAGE Bump patch version [github ci]"
         else
           echo "Invalid label, must be patch, minor or major."
           exit 1
         fi
-
+        git push --follow-tags -f
   release:
     needs: bump
     uses: ./.github/workflows/release.yml
