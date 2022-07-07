@@ -2,7 +2,7 @@ name: Pull Request Check
 
 on:
   pull_request:
-    types: [opened, labeled, unlabeled, synchronize]
+    types: [opened, reopened, labeled, unlabeled, synchronize]
 
 jobs:
   check:
@@ -13,7 +13,12 @@ jobs:
 
     steps:
     - uses: actions/labeler@v4
-      if: github.event.pull_request.opened == true
+      if: |
+        !contains(github.event.pull_request.labels.*.name, 'wip') &&
+        !contains(github.event.pull_request.labels.*.name, 'do not merge') &&
+        !contains(github.event.pull_request.labels.*.name, 'patch') &&
+        !contains(github.event.pull_request.labels.*.name, 'minor') &&
+        !contains(github.event.pull_request.labels.*.name, 'major')
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
