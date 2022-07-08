@@ -1,4 +1,4 @@
-name: PR Label Checker
+name: PR Label Check
 
 on:
   pull_request:
@@ -6,27 +6,13 @@ on:
 
 jobs:
   check-labels:
-    permissions:
-      contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/labeler@v4
-      name: check default labels
-      if: |
-        !contains(github.event.pull_request.labels.*.name, 'wip') &&
-        !contains(github.event.pull_request.labels.*.name, 'do not merge') &&
-        !contains(github.event.pull_request.labels.*.name, 'patch') &&
-        !contains(github.event.pull_request.labels.*.name, 'minor') &&
-        !contains(github.event.pull_request.labels.*.name, 'major')
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-
     - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
       name: validate labels
       with:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         valid-labels: 'patch, minor, major'
         invalid-labels: 'do not merge, wip'
-        # disable-reviews: true
+        disable-reviews: true

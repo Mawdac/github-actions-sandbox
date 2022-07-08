@@ -1,13 +1,10 @@
 name: Build and release
 
 on:
-  push:
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_call:
 
 jobs:
   changelog:
-    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - name: Build Changelog
@@ -17,9 +14,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check output
-        run: echo ${{steps.github_release.outputs.changelog}}
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v0.1.14
-        with:
-          body: ${{steps.github_release.outputs.changelog}}
+        run: echo ${{ steps.github_release.outputs.changelog }}
