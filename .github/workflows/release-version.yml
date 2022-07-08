@@ -23,6 +23,8 @@ jobs:
         token: ${{ secrets.GH_PAT }}
     - name: bump version
       run: |
+        git config user.name Mawdac
+        git config user.email edwardreillycomputers@gmail.com
         PREVIOUS_COMMIT_MESSAGE=$(git log --format=%B --reverse HEAD~..HEAD)
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
           npm version major -m "$PREVIOUS_COMMIT_MESSAGE"$'\n'"Major bump to %s [skip ci]"
