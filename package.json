@@ -5,12 +5,14 @@
     "test": "echo 'tests'",
     "build": "next build",
     "start": "next start",
-    "preversion": "npm test"
+    "preversion": "npm test && git reset --soft HEAD~1",
+    "version": "git add .",
+    "postversion": "git push --follow-tags -f"
   },
   "dependencies": {
     "next": "latest",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
-  "version": "8.1.0"
+  "version": "8.1.1"
 }
