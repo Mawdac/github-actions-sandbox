@@ -1,9 +1,7 @@
 name: Build and release
 
 on:
-  push:
-    branches:
-      - "new-changelog-testing"
+  workflow_dispatch:
 
 jobs:
   changelog:
@@ -15,7 +13,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v3
         with:
           configuration: ".github/changelog.json"
-          fromTag: "v7.0.0"
+          fromTag: "v8.0.0"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
