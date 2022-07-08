@@ -13,8 +13,8 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
         with:
-          fromTag: "7.0.0"
-          toTag: "8.0.0"
+          fromTag: "3.0.0"
+          toTag: "8.1.9"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
