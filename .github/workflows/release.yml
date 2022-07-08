@@ -16,4 +16,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check output
-        run: echo ${{ steps.github_release.outputs.changelog }}
+        run: |
+          echo ${{ steps.github_release.outputs.changelog }}
+          echo ${{ steps.github_release.outputs.pull_requests }}
+          echo ${{ steps.github_release.outputs.uncategorized_prs }}
+          echo ${{ steps.github_release.outputs.failed }}
