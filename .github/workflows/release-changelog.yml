@@ -1,17 +1,20 @@
 name: Build and release
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configuration: ".github/changelog.json"
+          fromTag: "v8.0.0"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check output
-        run: echo ${{ steps.github_release.outputs.changelog }}
+      - run: echo ${{steps.github_release.outputs.changelog}}
