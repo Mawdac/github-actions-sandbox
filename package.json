@@ -5,7 +5,9 @@
     "test": "echo 'tests'",
     "build": "next build",
     "start": "next start",
-    "preversion": "npm test"
+    "preversion": "npm test && git reset --soft HEAD~1",
+    "version": "git add .",
+    "postversion": "git push --follow-tags -f"
   },
   "dependencies": {
     "next": "latest",
