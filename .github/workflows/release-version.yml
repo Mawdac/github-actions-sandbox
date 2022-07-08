@@ -24,13 +24,13 @@ jobs:
       run: |
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-        PREVIOUS_COMMIT_MESSAGE=$(git log --format=%B --reverse HEAD~..HEAD)
+        MESSAGE=$(git log --format=%B --reverse HEAD~..HEAD)
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
-          npm version major -m "Major bump to %s [skip ci]" -m "$PREVIOUS_COMMIT_MESSAGE"
+          npm version major -m $'$MESSAGE\nMajor bump to %s [skip ci]'
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
-          npm version minor -m "Minor bump to %s [skip ci]" -m "$PREVIOUS_COMMIT_MESSAGE"
+          npm version minor -m $'$MESSAGE\nMinor bump to %s [skip ci]'
         elif [ -n "$GITHUB_PR_LABEL_PATCH" ]; then
-          npm version patch -m "Patch bump to %s [skip ci]" -m "$PREVIOUS_COMMIT_MESSAGE"
+          npm version patch -m $'$MESSAGE\nPatch bump to %s [skip ci]'
         else
           echo "Invalid label, must be patch, minor or major."
           exit 1
