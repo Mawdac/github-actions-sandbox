@@ -36,7 +36,7 @@ jobs:
 
   release:
     needs: bump
-    uses: ./.github/workflows/release-changelog.yml
+    uses: ./.github/workflows/release.yml
 
   preview:
     needs: bump
