@@ -1,7 +1,9 @@
 name: Notify release build
 
 on:
-  workflow_call:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   notify:
