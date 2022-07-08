@@ -7,5 +7,3 @@
 
 This repo automatically creates new versions based on the label of the PR that is merged.
 It follows [semantic versioning](https://semver.org/)
-
-new update for testing!
