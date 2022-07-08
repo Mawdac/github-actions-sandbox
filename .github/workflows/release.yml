@@ -9,6 +9,7 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
