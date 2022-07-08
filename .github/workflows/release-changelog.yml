@@ -1,7 +1,7 @@
 name: Build and release
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   changelog:
@@ -17,4 +17,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: echo ${{steps.github_release.outputs.changelog}}
+      - run: echo ${{steps.github_release.outputs.changelog}} || true
