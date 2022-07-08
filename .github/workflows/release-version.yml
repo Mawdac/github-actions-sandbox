@@ -25,7 +25,6 @@ jobs:
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         MESSAGE=$(git log --format=%B --reverse HEAD~..HEAD)
-        echo "-=-=- $MESSAGE -=-=-"
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
           npm version major -m "$MESSAGE Major bump to %s [skip ci]"
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
