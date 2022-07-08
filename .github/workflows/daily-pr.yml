@@ -1,4 +1,6 @@
 # This is a cronjob for PR reminders
+#
+# I created this before I knew it was already a feature
 name: Daily PR Reminder
 
 on:
