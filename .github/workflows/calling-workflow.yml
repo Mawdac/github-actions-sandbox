@@ -9,4 +9,4 @@ jobs:
   echo:
     uses: ./.github/workflows/reusable-workflow.yml
     with:
-      branch: ${{ $GITHUB_REF }}
+      branch: ${{ github.ref }}

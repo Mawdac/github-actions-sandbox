@@ -15,5 +15,5 @@ jobs:
 
     steps:
     - name: Echo branch name
-      if: ${{ $BRANCH_NAME == main }}
+      if: ${{ $BRANCH_NAME == 'refs/heads/reusable-workflows' }}
       run: echo $BRANCH_NAME
