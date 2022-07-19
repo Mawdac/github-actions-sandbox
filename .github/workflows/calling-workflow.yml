@@ -3,7 +3,7 @@ name: Calling workflow
 on:
   push:
     branches:
-      - "reusable-workflows"
+      - "main"
 
 jobs:
   echo:

@@ -16,8 +16,4 @@ jobs:
     steps:
     - name: Echo branch name
       run: |
-        if [[ $BRANCH_NAME == 'refs/heads/reusable-workflows' ]]; then
-          echo $BRANCH_NAME
-        else
-          echo nope
-        fi
+        if [[ $BRANCH_NAME == 'refs/heads/main' ]]; then echo 'main merged!'; fi
