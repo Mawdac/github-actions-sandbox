@@ -15,5 +15,9 @@ jobs:
 
     steps:
     - name: Echo branch name
-      if: $BRANCH_NAME == 'refs/heads/reusable-workflows'
-      run: echo $BRANCH_NAME
+      run: |
+        if [[ $BRANCH_NAME == 'refs/heads/reusable-workflows' ]]; then
+          echo $BRANCH_NAME
+        else
+          echo nope
+        fi
