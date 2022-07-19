@@ -1,0 +1,12 @@
+name: Calling workflow
+
+on:
+  push:
+    branches:
+      - "reusable-workflows"
+
+jobs:
+  echo:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      branch: ${{ $GITHUB_REF }}
