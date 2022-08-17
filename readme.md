@@ -13,3 +13,5 @@ It follows [semantic versioning](https://semver.org/)
 ## ✍🏻 Changelogs
 
 Automatically generated changelogs! (Coming Soon™️)
+
+this is a test
