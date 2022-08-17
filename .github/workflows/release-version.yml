@@ -26,7 +26,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: bump version
       run: |
-        git remote set-url origin https://x-access-token:${{steps.generate_token.outputs.token}}@github.com/mawdac/github-actions-sandbox.git
         git config user.name mawdac-bot[bot]
         git config user.email 111457299+mawdac-bot[bot]@users.noreply.github.com
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
@@ -40,6 +39,8 @@ jobs:
           exit 1
         fi
         git push -f --follow-tags
+      env:
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
   release:
     needs: bump
