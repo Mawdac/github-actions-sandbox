@@ -20,8 +20,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: bump version
       run: |
-        git config user.name Mawdac
-        git config user.email edwardreillycomputers@gmail.com
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         if [ -n "$GITHUB_PR_LABEL_MAJOR" ]; then
           npm version major -m "Major bump to %s [skip ci]"
         elif [ -n "$GITHUB_PR_LABEL_MINOR" ]; then
