@@ -14,3 +14,4 @@ It follows [semantic versioning](https://semver.org/)
 
 Automatically generated changelogs! (Coming Soon™️)
 
+Changelogs are cool!
