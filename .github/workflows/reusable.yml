@@ -1,0 +1,26 @@
+name: Reusable
+
+on:
+  workflow_call:
+    inputs:
+      run-number:
+        required: true
+        type: string
+      branch-name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Echo
+        run: |
+          echo "Run # ${{ inputs.run-number }}"
+          echo "Branch ${{ inputs.branch-name }}"

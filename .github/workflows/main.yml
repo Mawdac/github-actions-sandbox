@@ -1,0 +1,31 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Determine branch
+        id: check-branch
+        run: |
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Ref name: ${{ github.ref_name }}"
+
+  second:
+    needs: [first]
+    if: ${{ github.ref_name == 'main' || startsWith(github.head_ref, 'feature') }}
+    uses: ./.github/workflows/reusable.yml
+    with:
+      run-number: ${{ github.run_number }}
+      branch-name: ${{ github.head_ref || github.ref_name }}
