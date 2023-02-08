@@ -1,8 +1,0 @@
-do not merge:
-- '**/*'
-
-patch:
-- '**/*'
-
-ci-cd:
-- '.github/*'
