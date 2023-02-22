@@ -1,0 +1,25 @@
+---
+name: Tag Cleanup
+
+on:
+  # pull_request:
+  #   types:
+  #     - closed
+  push:
+    branches:
+      - feature/tag-removal
+
+jobs:
+  cleanup-tags:
+    # if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'feature')
+    runs-on: ubuntu-latest
+    env:
+      # BRANCH: ${{ github.head_ref }}
+      BRANCH: ${{ github.ref_name }}
+    steps:
+    - name: check it out
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - run: |
+        "$GITHUB_WORKSPACE"/bin/cleanup-tags.sh
