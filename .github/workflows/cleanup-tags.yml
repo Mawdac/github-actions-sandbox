@@ -22,4 +22,4 @@ jobs:
       with:
         fetch-depth: 0
     - run: |
-        "$GITHUB_WORKSPACE"/bin/cleanup-tags.sh
+        git push origin --delete $(git tag -l "$BRANCH*" | tr "\n" " ")
