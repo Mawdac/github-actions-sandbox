@@ -20,7 +20,7 @@ jobs:
 
     - name: Cleanup tags
       run: |
+        # The output of this subshell command should not be quoted, despite
+        # what shellcheck might want you to think - it breaks things
         # shellcheck disable=SC2046
         git push origin --delete $(git show-ref --tags | awk '{print $2}' | grep "$BRANCH*")
-
-
