@@ -1,5 +1,5 @@
 # 🏖 GitHub Actions Sandbox
 
-This is my sandbox learning environment for trying out different github actions.
+Welcome to the sandbox.
 
 <img src="images/sandbox.gif">
