@@ -2,24 +2,25 @@
 name: Tag Cleanup
 
 on:
-  # pull_request:
-  #   types:
-  #     - closed
-  push:
-    branches:
-      - feature/tag-removal
+  pull_request:
+    types:
+      - closed
 
 jobs:
   cleanup-tags:
-    # if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'feature')
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'feature')
     runs-on: ubuntu-latest
     env:
-      # BRANCH: ${{ github.head_ref }}
-      BRANCH: ${{ github.ref_name }}
+      BRANCH: ${{ github.head_ref }}
     steps:
-    - name: check it out
+    - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: |
-        git push origin --delete $(git tag -l "$BRANCH*" | tr "\n" " ")
+
+    - name: Cleanup tags
+      run: |
+        # shellcheck disable=SC2046
+        git push origin --delete $(git show-ref --tags | awk '{print $2}' | grep "$BRANCH*")
+
+
